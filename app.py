@@ -51,7 +51,7 @@ def test():
     return response.text
 
 #only for local use
-#"""
+"""
 if __name__ == '__main__':
     app.run(debug=True)
-#"""
+"""
