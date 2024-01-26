@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<title>YouTube</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+		<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/768px-YouTube_full-color_icon_%282017%29.svg.png?20240107144800" type="image/x-icon">
+        <style>
+            body{
+	            background-color: black;
+            }
+            #logo{
+                margin: 5px;
+                padding: 3px;
+                height: 50;
+                transition: all 0.5s;
+            }
+            #logo:hover{
+                scale: 1.3;
+            }
+            ::-webkit-scrollbar {
+                display: none;
+            }
+            #container{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .box{
+                margin: 10px;
+                padding: 10px;
+                overflow: hidden;
+                max-width: 80%;
+                max-height: min-content;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                transition: all 0.5s;
+            }
+            .box:hover{
+                border: 1px solid #ff0000;
+            }
+            .title{
+                color: grey;
+            }
+            #vidImg{
+                width: auto;
+                height: auto;
+                object-fit: cover;
+                display: block;
+            }
+            #search{
+                display: flex;
+                justify-content: center;
+                margin: 30px;
+            }
+            .search{
+                margin: 5px;
+                padding: 3px;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+            #search_query{
+                background-color: black;
+                color: white;
+                width: 30%;
+                border: 1px solid #ff0000;
+                font-size: 30px;
+            }
+            button{
+                color: white;
+                border: 1px solid #ff0000;
+                background-color: black;
+                cursor: pointer;
+                transition: all 0.5s;
+            }
+            button:hover{
+                scale: 1.3;
+            }
+        </style>
+	</head>
+	<body>
+		<div id="search">
+			<a href="/"><img id="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/768px-YouTube_full-color_icon_%282017%29.svg.png?20240107144800"></a>
+			<input class="search" id="search_query">
+			<button class="search" id="search_btn"><span class="material-symbols-outlined">search</span></button>
+		</div>
+		<div id="container"></div>
+		<script>
+            container = document.getElementById("container");
+            url = "/youtube";
+            search_btn = document.getElementById("search_btn");
+            search_query = document.getElementById("search_query");
+            function fetch_homepage(q){
+                container.innerHTML = "";
+                fetch(url+q).then(r => r.json()).then(data =>{
+                    data.forEach(item =>{
+                        var box = document.createElement("div");
+                        box.className = "box";
+                        var img = document.createElement("img");
+                        img.className = "vidImg";
+                        img.src = item.img;
+                        var an = document.createElement("a");
+                        an.href = "/watch?vid="+item.video;
+                        an.appendChild(img);
+                        var title = document.createElement("h3");
+                        title.className = "title";
+                        title.textContent = item.title;
+                        box.appendChild(an);
+                        box.appendChild(title);
+                        container.appendChild(box);
+                    });
+                });
+            }
+            fetch_homepage('');
+            search_btn.addEventListener('click',()=>{
+                if (search_query.value != ""){
+                    new_query = "?q="+search_query.value;
+                    fetch_homepage(new_query);
+                }
+            });
+        </script>
+	</body>
+</html>
