@@ -1,16 +1,16 @@
-This is my 1st api made using flask.
+<h1>This is my 1st api made using flask.</h1>
 
-It is hosted in render:-
-url: https://youtube-fqmk.onrender.com/
+<h2>It is hosted in render:-</h2>
+<h2><b>url: https://youtube-fqmk.onrender.com/</b></h2>
 
-routes are :-
-/:
-    This is the main route of the site. It returns simple webpage which uses /youtube route to show videos.
-    It takes a optional argument 'q' which is only a search term for youtube.
+<h1>routes are :-</h1>
+<h2>/:</h2>
+    <h3>This is the main route of the site. It returns simple webpage which uses /youtube route to show videos.
+    It takes a optional argument 'q' which is only a search term for youtube.</h3>
 
-/youtube:
-    This is the api itself. This is very simple api. It returns only image source and video ID. It takes a optional argument 'q' which is search term.
-    It returns JSON as :-
+<h2>/youtube:</h2>
+    <h3>This is the api itself. This is very simple api. It returns only image source and video ID. It takes a optional argument 'q' which is search term.
+    It returns JSON as :-</h3>
         [
             {
                 "img":IMAGE_SOURCE,
@@ -23,8 +23,8 @@ routes are :-
             ...
         ]
 
-/source:
-    This is redirects you to https://www.youtube.com
+<h2>/source:</h2>
+    <h3>This gets https://www.youtube.com and return the page itself.</h3>
 
-/watch:
-    This route returns a webpage that plays youtube embed video. This takes a compulsory argument 'vid' which has video ID. If vid argument is not provided it will redirect to '/' route.
+<h2>/watch:</h2>
+    <h3>This route returns a webpage that plays youtube embed video. This takes a compulsory argument 'vid' which has video ID. If vid argument is not provided it will redirect to '/' route.</h3>
