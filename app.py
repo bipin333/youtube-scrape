@@ -33,9 +33,10 @@ def yt():
                 "img": link,
                 "video": vid
             }
-            #title = re.search(r'{"url":"{data["video"]}.{0,333}{"text":"([^"]*)"',response.text)
-            #title = re.findall(r'{"url":"' + re.escape(data["video"]) + r'.*{"text":"([^"]*)"', response.text, re.DOTALL)
-            #data["title"] = title;
+            """
+            ik = re.findall(rf'{re.escape(data["img"])}[^"]*.{{0,500}}',response.text)
+            data["title"] = re.findall('"text":"([^"]*)',ik[0])
+            """                                                                                              
             datas.append(data)
         elif not datas:
             data = {
@@ -45,7 +46,7 @@ def yt():
             datas.append(data)
     return datas;
 
-@app.route('/test')
+@app.route('/source')
 def test():
     response = requests.get("https://www.youtube.com")
     return response.text

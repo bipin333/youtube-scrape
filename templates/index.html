@@ -2,7 +2,7 @@
 	<head>
 		<title>YouTube</title>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-		<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/768px-YouTube_full-color_icon_%282017%29.svg.png?20240107144800" type="image/x-icon">
+		<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/2/21/YouTube_icon_%282011-2013%29.svg" type="image/x-icon">
         <style>
             body{
 	            background-color: black;
@@ -28,25 +28,20 @@
             .box{
                 margin: 10px;
                 padding: 10px;
-                overflow: hidden;
-                max-width: 80%;
-                max-height: min-content;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 transition: all 0.5s;
+                cursor: pointer;
+                width: fit-content;
+                height: fit-content;
             }
             .box:hover{
                 border: 1px solid #ff0000;
             }
-            .title{
-                color: grey;
-            }
-            #vidImg{
-                width: auto;
+            .vidImg{
+                max-width: 333px;
                 height: auto;
-                object-fit: cover;
-                display: block;
             }
             #search{
                 display: flex;
@@ -99,14 +94,13 @@
                         var img = document.createElement("img");
                         img.className = "vidImg";
                         img.src = item.img;
-                        var an = document.createElement("a");
-                        an.href = "/watch?vid="+item.video;
-                        an.appendChild(img);
-                        var title = document.createElement("h3");
-                        title.className = "title";
-                        title.textContent = item.title;
-                        box.appendChild(an);
-                        box.appendChild(title);
+                        img.addEventListener('click', ()=>{
+                            window.location.href = '/watch?vid='+item.video;
+                        })
+                        img.addEventListener('load',()=>{
+                            box.appendChild(img);
+                        })
+                        //an.href = "/watch?vid="+item.video;
                         container.appendChild(box);
                     });
                 });
